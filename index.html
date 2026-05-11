@@ -5,131 +5,235 @@
 <title>Feliz cumpleaños ❤️</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(#a8e6cf, #ffd3b6);
-  color: #2d3436;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
-h1 {
-  margin-top: 30px;
-  font-size: 2em;
+/* cielo */
+.sky {
+  position: fixed;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(#7ec0ee, #bde0fe);
+  z-index: -3;
 }
 
-.game-container {
-  margin-top: 30px;
+/* nubes */
+.cloud {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  background: white;
+  box-shadow: 20px 0 white, 40px 0 white, 10px -10px white;
+  animation: moveClouds 30s linear infinite;
 }
 
+@keyframes moveClouds {
+  from { transform: translateX(-100px); }
+  to { transform: translateX(110vw); }
+}
+
+/* pasto */
+.ground {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: repeating-linear-gradient(
+    90deg,
+    #3cb043 0px,
+    #3cb043 20px,
+    #2e8b3c 20px,
+    #2e8b3c 40px
+  );
+  z-index: -2;
+}
+
+/* 🦖 DINO PIXEL PRO */
+.dino {
+  position: fixed;
+  bottom: 30px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  background: #4CAF50;
+
+  box-shadow:
+  20px 0 #4CAF50, 40px 0 #4CAF50,
+  0 20px #4CAF50, 20px 20px #66BB6A, 40px 20px #000, 60px 20px #4CAF50,
+  0 40px #4CAF50, 20px 40px #4CAF50, 40px 40px #4CAF50, 60px 40px #4CAF50,
+  20px 60px #4CAF50, 40px 60px #4CAF50, 60px 60px #4CAF50, 80px 60px #4CAF50,
+  20px 80px #4CAF50, 40px 80px #66BB6A, 60px 80px #4CAF50, 80px 80px #4CAF50,
+  20px 100px #4CAF50,
+  60px 100px #4CAF50,
+  80px 40px #4CAF50,
+  100px 20px #4CAF50,
+  120px 0 #4CAF50;
+
+  transform: scale(2);
+  animation: respirar 1.5s infinite;
+}
+
+@keyframes respirar {
+  0%,100% { transform: scale(2); }
+  50% { transform: scale(2.1); }
+}
+
+/* burbuja */
+.bubble {
+  position: fixed;
+  bottom: 120px;
+  left: 20px;
+  background: white;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  max-width: 160px;
+}
+
+/* tarjetas */
+.card {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 500px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* botones */
 button {
-  padding: 12px 20px;
+  padding: 12px;
   margin: 10px;
   border: none;
-  border-radius: 15px;
-  background: #ffaaa5;
+  border-radius: 10px;
+  background: #ff4d6d;
   color: white;
-  font-size: 16px;
   cursor: pointer;
+  font-family: inherit;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #ff8b94;
+  transform: scale(1.1);
 }
 
 .hidden {
   display: none;
 }
 
-.card {
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 500px;
-  background: #ffffffcc;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+/* corazones */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  animation: subir linear forwards;
 }
 
-.final {
-  background: #dcedc1;
+@keyframes subir {
+  from { transform: translateY(0); }
+  to { transform: translateY(-110vh); }
 }
 </style>
-
 </head>
+
 <body>
+
+<div class="sky"></div>
+<div class="ground"></div>
+
+<div class="cloud" style="top:50px;"></div>
+<div class="cloud" style="top:120px; animation-delay:10s;"></div>
+
+<div class="dino"></div>
+<div class="bubble" id="dinoText">¡Hola! Contesta bien 🦖</div>
 
 <h1>🌿 FELIZ CUMPLEAÑOS MI AMORCITO 🌿</h1>
 
-<div class="game-container">
-
 <div id="nivel1" class="card">
-  <p>🎮 Nivel 1: Elige la opción correcta</p>
-  <p>¿Qué eres para mí?</p>
-  <button onclick="correcto1()">Mi todo 💕</button>
-  <button onclick="incorrecto()">Un npc 🤨</button>
+<p>🎮 Nivel 1</p>
+<p>¿Qué eres para mí?</p>
+<button onclick="correcto1()">Mi todo 💕</button>
+<button onclick="incorrecto()">Un npc 🤨</button>
 </div>
 
 <div id="nivel2" class="card hidden">
-  <p>🍄 Nivel 2: Pregunta importante</p>
-  <p>¿Quién es mi persona favorita?</p>
-  <button onclick="correcto2()">Tú 💖</button>
-  <button onclick="incorrecto()">Otro 😡</button>
+<p>🍄 Nivel 2</p>
+<p>¿Quién es mi persona favorita?</p>
+<button onclick="correcto2()">Tú 💖</button>
+<button onclick="incorrecto()">Otro 😡</button>
 </div>
 
 <div id="nivel3" class="card hidden">
-  <p>🌸 Nivel 3: Última misión</p>
-  <p>Presiona para desbloquear tu regalo</p>
-  <button onclick="final()">Abrir cofre 🎁</button>
+<p>🌸 Nivel 3</p>
+<p>Presiona para desbloquear</p>
+<button onclick="finalJuego()">Abrir 🎁</button>
 </div>
 
-<div id="mensajeError"></div>
+<div id="final" class="card hidden">
+<h2>🎉 FELIZ CUMPLEAÑOS 🎉</h2>
+<p>Has completado el juego 💘</p>
 
-<div id="final" class="card final hidden">
-  <h2>🎉 FELIZ CUMPLEAÑOS MI AMORCITO 🎉</h2>
-  <p>Has completado el juego 💘</p>
+<div class="card">
+<p style="line-height:1.6; font-size:10px;">
 
-  <div class="card">
-    <h2>Carta para John</h2>
-    <p>
-    Hoy es un día demasiado especial porque naciste tú, y sinceramente no puedo dejar pasar la oportunidad de decirte lo importante que eres para mí.  
-    FELIZ CUMPLEAÑOS MI AMORCITO ❤️  
+Hoy es un día demasiado especial porque naciste tú, y sinceramente no puedo dejar pasar la oportunidad de decirte lo importante que eres para mí.  
+FELIZ CUMPLEAÑOS MI AMORCITO ❤️  
 
-    Espero que este día lo disfrutes muchísimo, que te rías, que la pases increíble y que sientas todo lo especial que eres, no solo hoy, sino siempre.  
-    De verdad deseo que este nuevo año en tu vida venga lleno de cosas buenas, logros, momentos felices y sueños cumplidos.  
+Espero que este día lo disfrutes muchísimo, que te rías, que la pases increíble y que sientas todo lo especial que eres, no solo hoy, sino siempre.  
+De verdad deseo que este nuevo año en tu vida venga lleno de cosas buenas, logros, momentos felices y sueños cumplidos.  
 
-    Quiero que sepas que para mí es una alegría enorme estar a tu lado. Me haces sentir bien, me haces reír y haces que todo sea más bonito.  
-    Gracias por cada momento, por cada conversación y por simplemente ser tú.  
+Quiero que sepas que para mí es una alegría enorme estar a tu lado. Me haces sentir bien, me haces reír y haces que todo sea más bonito.  
+Gracias por cada momento, por cada conversación y por simplemente ser tú.  
 
-    Espero poder seguir estando a tu lado en este cumpleaños y en muchos más, acompañándote, apoyándote y creando recuerdos juntos.  
-    Porque si algo tengo claro, es que quiero seguir compartiendo mi tiempo contigo.  
+Espero poder seguir estando a tu lado en este cumpleaños y en muchos más, acompañándote, apoyándote y creando recuerdos juntos.  
+Porque si algo tengo claro, es que quiero seguir compartiendo mi tiempo contigo.  
 
-    Te quiero muchísimo ❤️
-    </p>
-  </div>
+Te quiero muchísimo ❤️
 
+</p>
 </div>
-
 </div>
 
 <script>
-function correcto1() {
-  document.getElementById("nivel1").classList.add("hidden");
-  document.getElementById("nivel2").classList.remove("hidden");
+function correcto1(){
+  nivel1.classList.add("hidden");
+  nivel2.classList.remove("hidden");
+  dinoText.innerText="Bien hecho 🦖";
 }
 
-function correcto2() {
-  document.getElementById("nivel2").classList.add("hidden");
-  document.getElementById("nivel3").classList.remove("hidden");
+function correcto2(){
+  nivel2.classList.add("hidden");
+  nivel3.classList.remove("hidden");
+  dinoText.innerText="Ya casi 😎";
 }
 
-function incorrecto() {
-  document.getElementById("mensajeError").innerHTML = "😡 Intenta de nuevo, esa no es la respuesta correcta";
+function incorrecto(){
+  dinoText.innerText="No 😡 intenta otra vez";
 }
 
-function final() {
-  document.getElementById("nivel3").classList.add("hidden");
-  document.getElementById("final").classList.remove("hidden");
+function finalJuego(){
+  nivel3.classList.add("hidden");
+  final.classList.remove("hidden");
+  dinoText.innerText="Feliz cumpleaños 💖";
+
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(Math.random()*20+15)+"px";
+    h.style.animationDuration=(Math.random()*2+3)+"s";
+
+    document.body.appendChild(h);
+  },150);
 }
 </script>
 
