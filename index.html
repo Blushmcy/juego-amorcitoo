@@ -15,23 +15,32 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌤️ CIELO */
+/* 🌤️ CAPAS BIEN ORDENADAS */
 .sky {
- position: fixed;
+  position: fixed;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#5fb3ff 0%, #aee1ff 70%, #e4f7ff 100%);
-  z-index: -5;
+  background: linear-gradient(#5fb3ff, #aee1ff);
+  z-index: -10;
 }
 
-/* 🌄 HORIZONTE */
 .horizon {
   position: fixed;
   bottom: 40%;
   width: 100%;
   height: 20%;
   background: linear-gradient(to top, #2e7031, transparent);
-  z-index: -3;
+  z-index: -9;
+}
+
+.ground {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background:
+    linear-gradient(to bottom, #2ecc71 0 30px, #3e8e41 30px 100%);
+  z-index: -8;
 }
 
 /* 🌳 ÁRBOLES */
@@ -41,6 +50,7 @@ body {
   width: 40px;
   height: 60px;
   background: #8B5A2B;
+  z-index: -7;
 }
 
 .tree::after {
@@ -62,8 +72,7 @@ body {
   box-shadow:
     20px 0 white,
     40px 0 white,
-    10px -10px white,
-    30px -10px white;
+    10px -10px white;
   animation: moveClouds 40s linear infinite;
 }
 
@@ -72,43 +81,17 @@ body {
   to { transform: translateX(110vw); }
 }
 
-/* 🌱 SUELO */
-.ground {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-  background:
-    linear-gradient(to bottom, #2ecc71 0 30px, #3e8e41 30px 100%),
-    repeating-linear-gradient(
-      90deg,
-      rgba(0,0,0,0.1) 0px,
-      rgba(0,0,0,0.1) 2px,
-      transparent 2px,
-      transparent 40px
-    );
-  z-index: -2;
-}
-
-/* 🟨 TÍTULO MINECRAFT */
+/* 🟨 TÍTULO */
 h1 {
-  font-size: 26px;
-  color: #ffd700;
+  font-size: 28px;
+  color: #ffcc00;
   text-shadow:
-    4px 4px 0px #000,
-    6px 6px 0px #000;
-  transform: perspective(500px) rotateX(10deg);
-  letter-spacing: 2px;
+    3px 3px #000,
+    6px 6px #000;
   margin-top: 40px;
-  animation: brillo 2s infinite alternate;
 }
 
-@keyframes brillo {
-  from { filter: brightness(1); }
-  to { filter: brightness(1.4); }
-}
-
-/* 🦖 DINO MEJORADO */
+/* 🦖 DINO */
 .dino {
   position: fixed;
   bottom: 0;
@@ -121,47 +104,38 @@ h1 {
   20px 0 #4CAF50, 40px 0 #4CAF50,
   0 20px #4CAF50, 20px 20px #66BB6A, 40px 20px #000, 60px 20px #4CAF50,
   0 40px #4CAF50, 20px 40px #4CAF50, 40px 40px #4CAF50, 60px 40px #4CAF50,
-  20px 60px #4CAF50, 40px 60px #4CAF50, 60px 60px #4CAF50, 80px 60px #4CAF50,
-  20px 80px #4CAF50, 40px 80px #66BB6A, 60px 80px #4CAF50, 80px 80px #4CAF50,
-  20px 100px #4CAF50,
-  60px 100px #4CAF50,
-  80px 40px #4CAF50,
-  100px 20px #4CAF50,
-  120px 0 #4CAF50;
+  20px 60px #4CAF50, 40px 60px #4CAF50, 60px 60px #4CAF50;
 
   transform: scale(3);
   transform-origin: bottom left;
-  animation: respirar 1.5s infinite;
-}
-
-@keyframes respirar {
-  0%,100% { transform: scale(3); }
-  50% { transform: scale(3.1); }
+  z-index: 15;
 }
 
 /* 💬 BURBUJA */
 .bubble {
   position: fixed;
-  bottom: 150px;
+  bottom: 140px;
   left: 40px;
   background: white;
   color: black;
   padding: 10px;
   border-radius: 10px;
   font-size: 10px;
-  max-width: 160px;
+  z-index: 20;
 }
 
 /* 🎮 CARTAS */
 .card {
+  position: relative;
+  z-index: 10;
   margin: 30px auto;
   padding: 20px;
   max-width: 500px;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   border-radius: 15px;
 }
 
-/* 🔘 BOTONES */
+/* BOTONES */
 button {
   padding: 12px;
   margin: 10px;
@@ -171,7 +145,6 @@ button {
   color: white;
   cursor: pointer;
   font-family: inherit;
-  transition: 0.3s;
 }
 
 button:hover {
@@ -200,23 +173,19 @@ button:hover {
 <div class="horizon"></div>
 <div class="ground"></div>
 
-<div class="tree" style="left:20%;"></div>
-<div class="tree" style="left:70%;"></div>
+<!-- 🌳 MÁS ÁRBOLES -->
+<div class="tree" style="left:10%;"></div>
+<div class="tree" style="left:30%;"></div>
+<div class="tree" style="left:50%;"></div>
+<div class="tree" style="left:80%;"></div>
 
 <div class="cloud" style="top:50px;"></div>
-<div class="cloud" style="top:120px; animation-delay:10s;"></div>
+<div class="cloud" style="top:120px;"></div>
 
 <div class="dino"></div>
 <div class="bubble" id="dinoText">¡Hola! Contesta bien 🦖</div>
 
-<h1{
-  font-size: 28px;
-  color: #ffcc00;
-  text-shadow:
-    3px 3px 0 #000,
-    6px 6px 0 #000,
-    0 0 10px rgba(0,0,0,0.7);
-  margin-top: 40px;>🌿 FELIZ CUMPLEAÑOS MI AMORCITO 🌿</h1>
+<h1>🌿 FELIZ CUMPLEAÑOS MI AMORCITO 🌿</h1>
 
 <div id="nivel1" class="card">
 <p>🎮 Nivel 1</p>
@@ -244,7 +213,6 @@ button:hover {
 
 <div class="card">
 <p style="line-height:1.6; font-size:10px;">
-
 Hoy es un día demasiado especial porque naciste tú, y sinceramente no puedo dejar pasar la oportunidad de decirte lo importante que eres para mí.  
 FELIZ CUMPLEAÑOS MI AMORCITO ❤️  
 
@@ -258,7 +226,6 @@ Espero poder seguir estando a tu lado en este cumpleaños y en muchos más, acom
 Porque si algo tengo claro, es que quiero seguir compartiendo mi tiempo contigo.  
 
 Te quiero muchísimo ❤️
-
 </p>
 </div>
 </div>
@@ -295,13 +262,9 @@ function finalJuego(){
     h.style.animationDuration=(Math.random()*2+3)+"s";
 
     document.body.appendChild(h);
-  },150);
+  },300);
 }
 </script>
 
 </body>
 </html>
-<div class="tree" style="left:10%;"></div>
-<div class="tree" style="left:30%;"></div>
-<div class="tree" style="left:50%;"></div>
-<div class="tree" style="left:80%;"></div>
