@@ -281,8 +281,7 @@ function finalJuego(){
   height: 40px;
   background: #fff;
 
-  /* forma pixel */
-  box-shadow:
+  .box-shadow:
     10px 0 #fff,
     20px 0 #fff,
     0 10px #fff,
@@ -295,5 +294,21 @@ function finalJuego(){
 
   animation: moveRabbit 8s linear infinite,
              jumpRabbit 0.6s ease-in-out infinite;
+  @keyframes moveRabbit {
+  0% {
+    left: -60px;
+  }
+  100% {
+    left: 110%;
+  }
+}
+@keyframes jumpRabbit {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+}
 }
 </html>
