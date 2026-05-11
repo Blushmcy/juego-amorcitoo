@@ -15,16 +15,29 @@ body {
   overflow-x: hidden;
 }
 
-/* cielo */
 .sky {
   position: fixed;
   width: 100%;
   height: 60%;
-  background: linear-gradient(#7ec0ee, #bde0fe);
+  background: repeating-linear-gradient(
+    to bottom,
+    #87ceeb 0px,
+    #87ceeb 40px,
+    #7ec0ee 40px,
+    #7ec0ee 80px
+  );
   z-index: -3;
 }
-
-/* nubes */
+.mountain {
+  position: fixed;
+  bottom: 40%;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 150px solid #3e7a3f;
+  z-index: -2;
+}
 .cloud {
   position: absolute;
   width: 80px;
@@ -39,18 +52,19 @@ body {
   to { transform: translateX(110vw); }
 }
 
-/* pasto */
 .ground {
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 40%;
-  background: repeating-linear-gradient(
-    90deg,
-    #3cb043 0px,
-    #3cb043 20px,
-    #2e8b3c 20px,
-    #2e8b3c 40px
+  z-index: -1;
+
+  background: linear-gradient(
+    to bottom,
+    #2ecc71 0px,   /* pasto brillante arriba */
+    #2ecc71 25px,
+    #3e8e41 25px,  /* tierra */
+    #3e8e41 100%
   );
   z-index: -2;
 }
@@ -76,7 +90,7 @@ body {
   100px 20px #4CAF50,
   120px 0 #4CAF50;
 
-  transform: scale(2);
+  transform: scale(1.3);
   animation: respirar 1.5s infinite;
 }
 
@@ -85,7 +99,6 @@ body {
   50% { transform: scale(2.1); }
 }
 
-/* burbuja */
 .bubble {
   position: fixed;
   bottom: 120px;
@@ -98,7 +111,6 @@ body {
   max-width: 160px;
 }
 
-/* tarjetas */
 .card {
   margin: 30px auto;
   padding: 20px;
@@ -129,7 +141,6 @@ button:hover {
   display: none;
 }
 
-/* corazones */
 .heart {
   position: fixed;
   bottom: -10px;
@@ -155,7 +166,10 @@ button:hover {
 <div class="bubble" id="dinoText">¡Hola! Contesta bien 🦖</div>
 
 <h1>🌿 FELIZ CUMPLEAÑOS MI AMORCITO 🌿</h1>
-
+color: #ffeb3b;
+  text-shadow: 3px 3px #000;
+  margin-top: 30px
+  
 <div id="nivel1" class="card">
 <p>🎮 Nivel 1</p>
 <p>¿Qué eres para mí?</p>
@@ -177,7 +191,7 @@ button:hover {
 </div>
 
 <div id="final" class="card hidden">
-<h2>🎉 FELIZ CUMPLEAÑOS 🎉</h2>
+<h2>🎉 FELIZ CUMPLEAÑOS JOHN 🎉</h2>
 <p>Has completado el juego 💘</p>
 
 <div class="card">
